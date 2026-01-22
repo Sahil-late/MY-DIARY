@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="/styles/index.css" />
+    <link rel="icon" href="/images/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <title>My Diary</title>
+</head>
+
+<body>
+    <form id="noteBookPage" action="/submit" method="post">
+        <div class="container invert bg-black h-[99.8dvh] w-[99.8dvw] text-white">
+            <div class="fullPage h-full bg-[rgba(25,255,255,0.05)] border-box overflow-hidden border relative">
+                <header>
+                    <div class="flex h-20 w-screen">
+                        <div class="w-15 bg-[rgba(255,255,255,0.2)] border flex justify-center items-center">
+                            <div class="text-center">
+                                <div class="pageNo"><%= page || 1 %></div>
+                                <button type="submit" name="action" class="hover:underline decoration-red-500 decoration-2 underline-offset-2 active:text-blue-500" value="save">save</button>
+                            </div>
+                        </div>
+                        <div class="w-full flex bg-[rgba(255,255,255,0.1)] border">
+                            <div class="w-[70%] h-full flex justify-center items-center">
+                                <textarea  name="header"
+                                    class="header h-full w-full bg-transparent border-none focus:outline-none text-center p-2 uppercase"
+                                    wrap="soft" maxlength="60"></textarea>
+                            </div>
+                            <div class="w-[30%] flex justify-center items-center border border-white flex-wrap text-blue-300">
+                                <div class="bg-transparent border-none  text-center p-2 date"></div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <section>
+                    <div class="flex w-screen h-[calc(100dvh-80px)] border-t-white bg-[linear-gradient(to_bottom,_#c0c0c0_1px,_transparent_1px)] 
+            bg-[length:100%_24px,40px_100%] text-yellow-400">
+                        <textarea name="sidebar"
+                            class="sidebar w-15 h-[calc(100dvh-115px)] bg-[rgba(255,255,255,0.1)] outline-none overflow-hidden flex-wrap text-center"
+                            wrap="soft">
+                    </textarea>
+                        <textarea name="content"
+                            class="content w-full h-[calc(100dvh-105px)] bg-[rgba(255,255,255,0.3)] border border-white px-2 overflow-hidden flex-wrap outline-none"
+                            wrap="soft">
+                            
+                    </textarea>
+                    </div>
+                </section>
+                <button name="action" value="prevpage" type="submit" class="absolute z-10 left-20 bottom-0 cursor-pointer">&lt;</button>
+                <button name="action" value="nextpage" type="submit" class="absolute z-10 right-10 bottom-0 cursor-pointer">&gt;</button>
+                <div class="username absolute bottom-0 left-[50%]   h-5.5 flex justify-center items-center translate-x-[-50%] border w-5.5 rounded-full bg-white text-black font-bold border-2 border-green-500 cursor-pointer">
+                        S
+                </div>
+                <div class="logout absolute bottom-0 left-[55%] h-5.5 flex justify-center items-center border rounded bg-white text-black font-bold border-2 px-2 border-red-700 text-sm cursor-pointer text-blue-500 hidden">
+                        Logout
+                </div>
+            </div>
+            <input name="date" type="hidden">
+            <input name="pageNo" type="hidden">
+            <input type="hidden" name="setAction" id="hiddenAction">
+            <input type="hidden" name="username" id="username" value="<%= username %>">
+        </div>
+    </form>
+</body>
+<script src="/javascript/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</html>

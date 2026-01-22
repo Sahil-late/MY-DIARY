@@ -1,0 +1,23 @@
+body{
+    background: #000;
+    color: #fff;
+}
+h1{
+    text-align: center;
+    margin-top: 20%;
+    color: aqua;
+}
+
+span{
+  margin: 0 1.5px;
+  color: transparent;
+  background: linear-gradient(to left,red,green,yellow,pink,black,brown,blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: #000 0.5px;
+}
+
+.divider{
+  color: rgb(239, 246, 245);
+  padding-bottom: 2px;
+}

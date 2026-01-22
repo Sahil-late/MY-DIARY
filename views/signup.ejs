@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="/images/signup.png" type="image/png" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <title>Signup</title>
+    <style>
+        :root {
+            font-family: "Playfair Display", serif;
+            font-optical-sizing: auto;
+            font-weight: 900;
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+    <div
+        class="login bg-[url('images/login-bg.jpg')] h-screen flex flex-col justify-center items-center w-screen bg-cover bg-center font-bold">
+        <div
+            class="h-fit w-[90%] sm:w-[70%] bg-[rgba(255,255,255,0.2)] text-white rounded-lg shadow-lg border flex flex-col items-center p-4 gap-8">
+            <h1 class="text-4xl font-bold text-center
+"><span class="bg-[linear-gradient(to_top,#C52B2B_0%,#BA6530_25%,#EDDC12_50%,#05FF8E_75%,#CA1F55_100%)] text-transparent [background-clip:text] [-webkit-text-stroke:0.5px_#05FF8E]">Sign-Up</span>
+            </h1>
+            <div class="w-[90%] flex items-center gap-3">
+                <label class="text-red-700 font-bold" for="username">Username:*</label>
+                <input class="border border-b-orange-200 border-x-0 border-t-0 border-2 outline-none w-[90%]"
+                    type="text" id="username" name="username" title="Username may contain only letters and numbers" pattern="[A-Za-z0-9]{4,12}"
+ required>
+            </div>
+            <div class="w-[90%] flex sm:flex-row flex-col gap-8">
+                <div class="sm:w-[45%] w-full flex flex-col gap-2">
+                    <label class="text-yellow-200" for="password">Password:*</label>
+                    <div class="relative">
+                    <input oninput="checkPasswordStrength(this)" class="border border-b-[#17E6A8] border-x-0 border-t-0 border-2  outline-none w-full"
+                        type="password" id="password" name="password" 
+                        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" minlength="8" maxlength="12"  title="Password must be at least 8 characters, include uppercase, lowercase, number, and special character"
+ required>
+                    <div onclick="togglePasswordVisibility(this.previousElementSibling, this)" class="eyeChange absolute right-0 bottom-1">
+                        <img width="16px" height="16px" src="images/eye.png" alt="">
+                    </div>
+                    </div>
+                </div>
+                <div class="sm:w-[45%] w-full flex flex-col gap-2">
+                    <label class="text-blue-300" for="RePassword">Re-Password:*</label>
+                    <div class="relative">
+                    <input oninput="checkPasswordStrength(this)" class="border border-b-red-800 border-x-0 border-t-0 border-2 outline-none w-full"
+                        type="password" id="Re-Password" name="repassword" title="Password must be at least 8 characters, include uppercase, lowercase, number, and special character" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" minlength="8" maxlength="12" required>
+                    <div onclick="togglePasswordVisibility(this.previousElementSibling, this)" class="eyeChange absolute right-0 bottom-1">
+                        <img width="16px" height="16px" src="images/eye.png" alt="">
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="occ w-[90%] flex items-center gap-3">
+                <label for="occupation">Occupation:</label>
+                <input class="border border-b-green-600 border-x-0 border-t-0 border-2 outline-none w-[90%]" type="text" id="occupation" name="occupation">
+            </div>
+            <button class="sign w-[90%] bg-[#4B00FA] border border-red-800 border-2 rounded-lg" type="submit">Sign-up</button>
+            <div class="w-fit bg-gray-100 flex justify-center items-center px-3 py-1 rounded-lg">
+                <p class="text-gray-900">Allready have an account? <a class="text-blue-400 underline decoration-red-500" href="/">Login here</a></p>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+    let eyeChange = document.querySelector('.eyeChange');
+    function togglePasswordVisibility(passwordInput, eyeChange) {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeChange.innerHTML = '<img width="16px" height="16px" src="images/eye-off.png" alt="">';
+            
+        } else {
+            passwordInput.type = 'password';
+            eyeChange.innerHTML = '<img width="16px" height="16px" src="images/eye.png" alt="">';
+        }
+    }
+    function checkPasswordStrength(passwordInput) {
+        let password = passwordInput.value;
+        let strength = 0;
+
+        if (password.length >= 8) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[\W]/.test(password)) strength++;
+
+        switch (strength) {
+            case 0:
+            case 1:
+                passwordInput.style.borderColor = 'red';
+                break;
+            case 2:
+                passwordInput.style.borderColor = 'orange';
+                break;
+            case 3:
+                passwordInput.style.borderColor = 'yellow';
+                break;
+            case 4:
+                passwordInput.style.borderColor = '#17E6A8';
+                break;
+        }
+    }
+    const input = document.getElementById("username");
+
+const blocked = /[<>/]/;
+
+input.addEventListener("input", () => {
+  input.setCustomValidity("");
+
+  if (!input.value) {
+    input.setCustomValidity("Username is required");
+  } else if (blocked.test(input.value)) {
+    input.setCustomValidity("Characters < > / are not allowed");
+  } else if (input.value.length < 4) {
+    input.setCustomValidity("Username must be at least 4 characters");
+  }
+});
+</script>
+<script src="javascript/signup.js"></script>
+</html>
