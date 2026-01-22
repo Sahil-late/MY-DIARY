@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         body: 'include'
     });
     const data = await response.json();
-    if (data.message === 'Auto login successful') {
+    if (data.message === 'Auto login successful' || data.message === 'Access token refreshed') {
             showAlert("Welcome back, " + data.username);
         setTimeout(() => {
             window.location.href = '/home';
