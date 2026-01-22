@@ -14,8 +14,8 @@ function showAlert(message) {
     gravity: "top",
     position: "right",
     close: true,
-    backgroundColor: "#1e2021",
     style: {
+      background: "#1e2021",
       borderRadius: "12px",
       color: "#a3abb3",
       padding: "12px 16px"

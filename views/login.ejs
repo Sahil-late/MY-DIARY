@@ -17,13 +17,19 @@
             font-weight: 900;
             font-style: normal;
         }
+
+        @media all and (max-width:300px),(max-height:300px){
+            :root{
+                font-size: 8px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <form>
     <div
-        class="login bg-[url('images/login-bg.jpg')] h-screen flex flex-col justify-center items-center w-screen bg-cover bg-center font-bold">
+        class="login bg-[url('images/login-bg.jpg')] h-dvh flex flex-col justify-center items-center w-dvw bg-cover bg-center font-bold">
         <div
             class="h-fit w-[90%] sm:w-[70%] bg-[rgba(255,255,255,0.2)] text-white rounded-lg shadow-lg border flex flex-col items-center p-4 gap-8">
             <h1 class="text-4xl font-bold text-center

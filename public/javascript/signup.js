@@ -11,7 +11,7 @@ function showAlert(message) {
       position:"absolute",
       left:"20%",
       top:"20%",
-      backgroundColor: "#1e2021",
+      background: "#1e2021",
       display:"flex",
       gap:"15px"
     }
